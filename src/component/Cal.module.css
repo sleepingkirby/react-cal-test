@@ -35,6 +35,6 @@
 }
 
 .CalMonDay {
-  padding: var(--default-pad-size);
+  padding: var(--default-pad-size) 0px var(--default-pad-size) 0px;
   border: 1px solid red;
 }

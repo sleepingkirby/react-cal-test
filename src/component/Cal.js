@@ -10,16 +10,27 @@ export const Cal = ({ curDate = new Date(), dateRng = { 'start': null, 'end': nu
   const year = today.getFullYear();
 
   const drawMonCal = () => {
-    const days = [1,2,3,4,5,6,7,8,9];
+    const curMon = curDate.getMonth();
     let dayArr = [];
-    for(const day of days){
+    let pointerDate = new Date(curDate.getFullYear(), curDate.getMonth(), 1);
+    pointerDate = new Date(pointerDate.getFullYear(), pointerDate.getMonth(), (1 - pointerDate.getDay()) % 7);
+    console.log(pointerDate); 
+    let endDate = new Date(curDate.getFullYear(), curDate.getMonth() + 1, 0);
+    //endDt.getDate()+(7-endDt.getDay())
+    endDate = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate()+(7-endDate.getDay()));
+    console.log(endDate);
+
+    while(Date.parse(pointerDate) < Date.parse(endDate)){
+    const day = pointerDate.getDate();
+    const mon = pointerDate.getMonth(); 
       dayArr.push(
         (
-          <div className={`${cn.CalMonDay}`} key={day} >
+          <div className={`${cn.CalMonDay}`} key={`${mon}=${day}`} >
             {day}日
           </div>
         )
       );
+      pointerDate.setDate(pointerDate.getDate() + 1);
     }
     return dayArr;
   }
