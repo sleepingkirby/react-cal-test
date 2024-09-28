@@ -7,11 +7,12 @@
   flex-direction: column;
 }
 
-.Cal div {
-  display: flex;
+.Cal > div {
+  width: 100%;
 }
 
 .CalMonNav {
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -24,4 +25,16 @@
 
 .CalMonNavArrow {
   cursor: pointer;
+}
+
+.CalMon {
+  display: grid;
+  justify-content: space-between;
+  align-items: center;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.CalMonDay {
+  padding: var(--default-pad-size);
+  border: 1px solid red;
 }
