@@ -5,26 +5,41 @@
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+  border:1px solid red;
 }
 
 .Cal > div {
   width: 100%;
 }
 
-.CalMonNav {
+.CalMonHeader {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 350px;
+  height: 44px;
+  margin-bottom: 16px;
 }
 
-.CalMonNav div {
-  padding: var(--default-pad-size);
+.CalMonHeader div {
 }
 
-.CalMonNavArrow {
+.CalMonHeaderSelect {
   cursor: pointer;
+  width: 44px;
+  height: 44px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.CalMonHeaderSelect:hover {
+  background-color: #e6e6e6;
+}
+
+.CalMonHeaderDate {
 }
 
 .CalMon {
@@ -34,7 +49,36 @@
   grid-template-columns: repeat(7, 1fr);
 }
 
-.CalMonDay {
-  padding: var(--default-pad-size) 0px var(--default-pad-size) 0px;
-  border: 1px solid red;
+.CalMon div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.CalMonDay {
+  width: 50px;
+  height: 36px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.CalMonDay:hover {
+  background-color: #e6e6e6;
+}
+
+.CalMon > .CalMonDayToday {
+  background-color: #ffff76;
+}
+
+.CalMon > .CalMonDayActive {
+  background-color: #006edc;
+}
+
+.CalMon > .CalMonDayNonCurMon {
+  color: #757575;
+}
+
+
+
+
+

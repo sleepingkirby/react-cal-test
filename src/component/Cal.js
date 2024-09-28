@@ -14,18 +14,17 @@ export const Cal = ({ curDate = new Date(), dateRng = { 'start': null, 'end': nu
     let dayArr = [];
     let pointerDate = new Date(curDate.getFullYear(), curDate.getMonth(), 1);
     pointerDate = new Date(pointerDate.getFullYear(), pointerDate.getMonth(), (1 - pointerDate.getDay()) % 7);
-    console.log(pointerDate); 
     let endDate = new Date(curDate.getFullYear(), curDate.getMonth() + 1, 0);
-    //endDt.getDate()+(7-endDt.getDay())
     endDate = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate()+(7-endDate.getDay()));
-    console.log(endDate);
 
     while(Date.parse(pointerDate) < Date.parse(endDate)){
     const day = pointerDate.getDate();
-    const mon = pointerDate.getMonth(); 
+    const mon = pointerDate.getMonth();
+    const nonCurMonClass = pointerDate.getMonth() != curMon ? cn.CalMonDayNonCurMon : '';//setting style/class for dates not in current month;
+    const todayClass = 
       dayArr.push(
         (
-          <div className={`${cn.CalMonDay}`} key={`${mon}=${day}`} >
+          <div className={`${cn.CalMonDay} ${nonCurMonClass}`} key={`${mon}=${day}`} >
             {day}日
           </div>
         )
@@ -40,10 +39,10 @@ export const Cal = ({ curDate = new Date(), dateRng = { 'start': null, 'end': nu
 
   return (
       <div className={`${cn.Cal}`}>
-        <div className={`${cn.CalMonNav}`}>
-          <div className={`${cn.CalMonNavArrow}`}>&lt;</div>
-          <div className={`${cn.CalMonNavDate}`}>{year}年{mon}月</div>
-          <div className={`${cn.CalMonNavArrow}`}>&gt;</div>
+        <div className={`${cn.CalMonHeader}`}>
+          <div className={`${cn.CalMonHeaderSelect}`}>&lt;</div>
+          <div className={`${cn.CalMonHeaderDate}`}>{year}年{mon}月</div>
+          <div className={`${cn.CalMonHeaderSelect}`}>&gt;</div>
         </div>
         <div className={`${cn.CalMon}`}>
           {drawMonCal()}
