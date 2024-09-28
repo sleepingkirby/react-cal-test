@@ -9,10 +9,16 @@ Features:
     - Start and end date can be the same date
     - If clicked on end date is < start date, set no end date to var and set start date to clicked end date
 
+Extra features:
+- Clear button to clear the data selection range
 
-How to install and run:
-Standard React App:
 
+This is a standard react app. No extra libraries of any kind so no extra installation or running instructions
+
+How to install:
 yarn run install
+
+
+How to run:
 yarn run start
 
