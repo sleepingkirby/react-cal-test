@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import cn from './Cal.module.css'
 
-export const Cal = ({ curDate = new Date(), dateRng = { 'start': null, 'end': null }, setCurDate = null}) => {
+export const Cal = ({ curDate = new Date(), dateRng = { 'start': null, 'end': null }, setCurDate = null, setDateRng = null}) => {
   
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
@@ -28,11 +28,25 @@ export const Cal = ({ curDate = new Date(), dateRng = { 'start': null, 'end': nu
     while(Date.parse(pointerDate) < Date.parse(endDate)){
       const day = pointerDate.getDate();
       const mon = pointerDate.getMonth();
+      const yr = pointerDate.getFullYear();
       const nonCurMonClass = pointerDate.getMonth() !== curMon ? cn.CalMonDayNonCurMon : '';//setting style/class for dates not in current month;
       const todayClass = pointerDate.toDateString() === today.toDateString() ? cn.CalMonDayToday : ''; //setting today style/class 
+      const rngStart = dateRng?.start;
+      const rngEnd = dateRng?.End;
+      let rangeClass = '';
+        if(dateRng && rngStart && rngEnd ) {
+          if(pointerDate >= rngStart && pointerDate <= rngEnd){
+          rangeClass = cn.CalMonDayActive;
+          }
+        }
+
       dayArr.push(
         (
-          <div className={`${cn.CalMonDay} ${nonCurMonClass} ${todayClass}`} key={`${mon}=${day}`} >
+          <div
+            className={`${cn.CalMonDay} ${nonCurMonClass} ${todayClass} ${rangeClass}`}
+            key={`${mon}=${day}`}
+            onClick={() => {clickDate(yr, mon, day);}}
+          >
             {day}日
           </div>
         )
@@ -57,6 +71,14 @@ export const Cal = ({ curDate = new Date(), dateRng = { 'start': null, 'end': nu
     let dt = new Date(curDate);
     dt.setMonth(dt.getMonth() + val);
     setCurDate(new Date(dt));
+  }
+
+  
+  /*------------------------------------
+
+  ------------------------------------*/
+  const clickDate = (year, mon, date) => {
+  console.log(year, mon, date);
   }
 
   return (

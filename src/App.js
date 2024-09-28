@@ -9,7 +9,7 @@ function App() {
 
   return (
     <div className="App">
-      <Cal curDate={curDate} dateRng={dateRng} setCurDate={setCurDate} />
+      <Cal curDate={curDate} dateRng={dateRng} setCurDate={setCurDate} setDateRng={setDateRng} />
     </div>
   );
 }
