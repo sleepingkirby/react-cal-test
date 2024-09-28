@@ -21,10 +21,10 @@ export const Cal = ({ curDate = new Date(), dateRng = { 'start': null, 'end': nu
     const day = pointerDate.getDate();
     const mon = pointerDate.getMonth();
     const nonCurMonClass = pointerDate.getMonth() != curMon ? cn.CalMonDayNonCurMon : '';//setting style/class for dates not in current month;
-    const todayClass = 
+    const todayClass = pointerDate.toDateString() == curDate.toDateString() ? cn.CalMonDayToday : ''; //setting today style/class 
       dayArr.push(
         (
-          <div className={`${cn.CalMonDay} ${nonCurMonClass}`} key={`${mon}=${day}`} >
+          <div className={`${cn.CalMonDay} ${nonCurMonClass} ${todayClass}`} key={`${mon}=${day}`} >
             {day}日
           </div>
         )
