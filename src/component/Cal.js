@@ -8,7 +8,16 @@ export const Cal = ({ curDate = new Date(), dateRng = { 'start': null, 'end': nu
   const mon = curDate.getMonth() + 1;
   const year = curDate.getFullYear();
 
+
+  /*------------------------------------
+  pre: curDate
+  post: none (by itself)
+  params: none
+  returns: array of components to render
+  generates all the days in a calendar, with proper styling, pushes them in order into an array and returns the array to be rendered
+  ------------------------------------*/
   const drawMonCal = () => {
+    const today = new Date()
     const curMon = curDate.getMonth();
     let dayArr = [];
     let pointerDate = new Date(curDate.getFullYear(), curDate.getMonth(), 1);
@@ -20,7 +29,7 @@ export const Cal = ({ curDate = new Date(), dateRng = { 'start': null, 'end': nu
       const day = pointerDate.getDate();
       const mon = pointerDate.getMonth();
       const nonCurMonClass = pointerDate.getMonth() !== curMon ? cn.CalMonDayNonCurMon : '';//setting style/class for dates not in current month;
-      const todayClass = pointerDate.toDateString() === curDate.toDateString() ? cn.CalMonDayToday : ''; //setting today style/class 
+      const todayClass = pointerDate.toDateString() === today.toDateString() ? cn.CalMonDayToday : ''; //setting today style/class 
       dayArr.push(
         (
           <div className={`${cn.CalMonDay} ${nonCurMonClass} ${todayClass}`} key={`${mon}=${day}`} >
@@ -33,13 +42,20 @@ export const Cal = ({ curDate = new Date(), dateRng = { 'start': null, 'end': nu
     return dayArr;
   }
 
+
+  /*------------------------------------
+  pre: setCurDate
+  post: updates curDate state if applicable
+  params: val(number)
+  returns: none
+  takes in param 'val' and increments or decrements the curDate's month.
+  ------------------------------------*/
   const setCurMonth = (val = 0) => {
     if(!val) {
     return;
     }
     let dt = new Date(curDate);
-    console.log(dt.setMonth(dt.getMonth() + val));
-    console.log(dt.getMonth());
+    dt.setMonth(dt.getMonth() + val);
     setCurDate(new Date(dt));
   }
 
